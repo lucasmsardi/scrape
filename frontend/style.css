@@ -1,0 +1,60 @@
+header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  width: 100vw;
+  height: 20vh;
+  background-color: blue;
+}
+
+.box-header {
+  height: 20px;
+  width: 100px;
+  background-color: brown;
+}
+
+.bigbox {
+  display: flex;
+  align-items: center;
+  height: 60vh;
+  width: 100vw;
+  background-color: aqua;
+  justify-content: center;
+}
+
+.box {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  height: 40vh;
+  width: 500px;
+  background-color: antiquewhite;
+}
+
+form {
+  height: 100px;
+}
+
+button {
+  height: 40px;
+  width: 75px;
+}
+
+footer {
+  height: 20vh;
+  width: 100vw;
+  background-color: brown;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.box-footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 40px;
+  width: 200px;
+  background-color: blueviolet;
+}
