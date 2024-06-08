@@ -3,16 +3,6 @@
 ## 1 - Instalar as dependências
 
 ```
-cd frontend
-```
-
-```
-npm install
-```
-
-ou
-
-```
 cd backend
 ```
 
