@@ -2,15 +2,32 @@
 
 ## 1 - Instalar as dependências
 
-> cd frontend
-> npm install
+```
+cd frontend
+```
 
-> cd backend
-> npm install
+```
+npm install
+```
+
+ou
+
+```
+cd backend
+```
+
+```
+npm install
+```
 
 ## 2 - É necessário que o backend esteja rodando.
 
-> cd backend
-> node index.js
+```
+ cd backend
+```
 
-## 3 - Digitar a busca no formulário e clicar "buscar".
+```
+node index.js
+```
+
+## 3 - Digitar a palavra a ser buscada no formulário e clicar "buscar".
