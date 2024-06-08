@@ -36,6 +36,14 @@ form {
   height: 100px;
 }
 
+.item {
+  text-align: center;
+}
+
+.item::placeholder {
+  text-align: center;
+}
+
 button {
   height: 40px;
   width: 75px;
