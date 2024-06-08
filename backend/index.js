@@ -7,6 +7,7 @@ const app = express();
 const port = 3000;
 app.use(cors());
 
+//product title, ratings, number of reviews, product image URL
 //.a-icon.a-star-small-4-5
 //.a-icon.a-star-small-4
 // .a-icon?
@@ -18,6 +19,26 @@ app.listen(port, () => {
     `Servidor rodando na porta ${port}.`
   );
 });
+
+async function scrapeTitles(url) {
+  try {
+  } catch (error) {
+    console.error(
+      'Erro no scraping de títulos da página:',
+      error.message
+    );
+  }
+}
+
+async function scrapeNumberReviews(url) {
+  try {
+  } catch (error) {
+    console.error(
+      'Erro no scraping de número de reviews página:',
+      error.message
+    );
+  }
+}
 
 async function scrapeRatings(url) {
   try {
@@ -41,7 +62,17 @@ async function scrapeRatings(url) {
     );
   } catch (error) {
     console.error(
-      'Erro no scraping da página:',
+      'Erro durante o scraping de ratings da página:',
+      error.message
+    );
+  }
+}
+
+async function scrapeImageURL(url) {
+  try {
+  } catch (error) {
+    console.error(
+      'Erro no scraping da URL da imagem da página:',
       error.message
     );
   }
