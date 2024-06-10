@@ -1,60 +1,116 @@
-header {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  align-items: center;
-  width: 100vw;
-  height: 20vh;
-  background-color: blue;
+body {
+  margin: 0px;
+  padding: 0px;
+  margin-top: 0px;
+  padding-top: 0px;
 }
 
-.box-header {
-  height: 20px;
-  width: 100px;
-  background-color: brown;
+header {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 80px;
+  background-color: black;
+}
+
+button {
+  height: 30px;
+  width: 75px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: border-color 0.25s;
 }
 
 .bigbox {
   display: flex;
-  align-items: center;
-  height: 60vh;
+  align-items: stretch;
   width: 100vw;
+  height: 80vh;
+  justify-content: space-evenly;
+  background: gray;
+  font-size: 10px;
+}
+
+.search {
+  border-radius: 8px;
+  text-align: center;
+  height: 30px;
+}
+
+.search::placeholder {
+  text-align: center;
+}
+
+.Box-Title {
+  width: 20vw;
+  height: 100vh;
   background-color: aqua;
-  justify-content: center;
 }
 
-.box {
+.Box-Number-Reviews {
+  width: 20vw;
+  height: 50vh;
+  background-color: purple;
+}
+
+.Box-Ratings {
+  width: 20vw;
+  height: 50vh;
+  background-color: blue;
+}
+
+.Box-Image-URL {
+  width: 20vw;
+  height: 50vh;
+  background-color: brown;
+}
+
+.Box-Title,
+.Box-Number-Reviews,
+.Box-Ratings,
+.Box-Image-URL {
   display: flex;
-  align-items: flex-end;
-  justify-content: center;
-  height: 40vh;
-  width: 500px;
-  background-color: antiquewhite;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
 }
 
-form {
-  height: 100px;
+.title {
+  font-size: 5px;
 }
 
-.item {
-  text-align: center;
+.titleParagraph {
+  font-size: 5px;
 }
 
-.item::placeholder {
-  text-align: center;
+.Titles {
+  font-size: 14px;
+  font-weight: bold;
 }
 
-button {
-  height: 40px;
-  width: 75px;
+.Number-Reviews {
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.Ratings {
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.Box-Image-URL {
+  font-size: 14px;
+  font-weight: bold;
 }
 
 footer {
-  height: 20vh;
+  height: 80px;
   width: 100vw;
-  background-color: brown;
   display: flex;
   align-items: center;
+  background-color: black;
   justify-content: center;
 }
 
@@ -63,6 +119,6 @@ footer {
   align-items: center;
   justify-content: center;
   height: 40px;
+  background-color: aliceblue;
   width: 200px;
-  background-color: blueviolet;
 }

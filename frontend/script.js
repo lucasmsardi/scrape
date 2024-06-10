@@ -9,7 +9,7 @@ document.addEventListener(
         event.preventDefault();
 
         const searchInput =
-          document.querySelector('.item');
+          document.querySelector('.search');
         const searchQuery =
           searchInput.value.trim();
 
@@ -25,11 +25,36 @@ document.addEventListener(
                 `HTTP error! status: ${response.status}`
               );
             }
-
             const data = await response.json();
-            console.log(data);
-          } catch (err) {
-            console.error(err);
+            //ratings, titles
+
+            const titleContent =
+              document.querySelector(
+                '.Box-Title'
+              );
+            //titleContent.innerHTML = '';
+            data.titles.map((title) => {
+              const titleParagraph =
+                document.createElement('p');
+              titleParagraph.textContent = title;
+              titleContent.appendChild(
+                titleParagraph
+              );
+            });
+
+            const ratingsContent =
+              document.querySelector(
+                '.boxRatings'
+              );
+            ratingsContent.innerHTML = '';
+            data.ratings.map((rating) => {
+              const p =
+                document.createElement('p');
+              p.ratingsContent = rating;
+              ratingsContent.appendChild(p);
+            });
+          } catch (error) {
+            console.error(error);
           }
         } else {
           console.error('Busca vazia.');

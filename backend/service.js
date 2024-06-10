@@ -1,74 +1,93 @@
-import JSDOM from 'jsdom';
-import axios from 'axios';
+import { JSDOM } from 'jsdom';
 
-async function scrapeTitles(url) {
-  try {
-    const response = await axios.get(url);
-    const htmlContent = response.data;
+// file com todas as funções de scrape que serão usadas no index.js
+// todas as funções fazem scrape da primeira página a partir da palavra digitada
 
-    const dom = new JSDOM(htmlContent);
-  } catch (error) {
-    console.error(
-      'Erro no scraping de títulos da página:',
-      error.message
+//product title, ratings, number of reviews, product image URL
+//.a-icon.a-star-small-4-5
+//.a-icon.a-star-small-4
+// .a-icon?
+// .a-icon-star-small
+
+//titles = a-size-base-plus
+
+function scrapeTitles(response) {
+  const htmlContent = response.data;
+  const dom = new JSDOM(htmlContent);
+  const document = dom.window.document;
+
+  const titleElements = document
+    .querySelector(
+      '[data-component-type="s-search-results"]'
+    )
+    .querySelectorAll(
+      '[data-asin]:not(.AdHolder):not(.a-section):not(.sg-col-20-of-24)'
     );
-  }
-}
 
-async function scrapeNumberReviews(url) {
-  try {
-    const response = await axios.get(url);
-    const htmlContent = response.data;
-
-    const dom = new JSDOM(htmlContent);
-  } catch (error) {
-    console.error(
-      'Erro no scraping de número de reviews página:',
-      error.message
-    );
-  }
-}
-
-async function scrapeRatings(url) {
-  try {
-    const response = await axios.get(url);
-    const htmlContent = response.data;
-
-    const dom = new JSDOM(htmlContent);
-
-    const ratings = Array.from(
-      ratingElements
-    ).map((element) => {
-      const ratingClass = element.className.match(
-        /star-rating-(\d+)/
+  const titles = Array.from(titleElements)
+    .map((element) => {
+      const titleElement = element.querySelector(
+        '.a-size-base-plus'
       );
-      return ratingClass
-        ? parseInt(ratingClass[1], 10)
+      return titleElement
+        ? titleElement.textContent
         : null;
-    });
-    console.log(
-      ratings.filter((rating) => rating !== null)
-    );
-  } catch (error) {
-    console.error(
-      'Erro durante o scraping de ratings da página:',
-      error.message
-    );
-  }
+    })
+    .filter((title) => title !== null);
+
+  return titles;
 }
 
-async function scrapeImageURL(url) {
-  try {
-    const response = await axios.get(url);
-    const htmlContent = response.data;
+function scrapeNumberReviews(response) {
+  const htmlContent = response.data;
+  const dom = new JSDOM(htmlContent);
+  const document = dom.window.document;
+  const titleElements = document
+    .querySelector(
+      '[data-component-type="s-search-results"]'
+    )
+    .querySelectorAll('.a-icon-star-small');
+}
 
-    const dom = new JSDOM(htmlContent);
-  } catch (error) {
-    console.error(
-      'Erro no scraping da URL da imagem da página:',
-      error.message
-    );
-  }
+function scrapeRatings(response) {
+  const htmlContent = response.data;
+  const dom = new JSDOM(htmlContent);
+  const document = dom.window.document;
+
+  const ratingElements = Array.from(
+    document
+      .querySelector(
+        '[data-component-type="s-search-results"]'
+      )
+      .querySelectorAll(
+        '[data-asin]:not(.AdHolder):not(.a-section):not(.sg-col-20-of-24)'
+      )
+  )
+    .map(
+      (item) =>
+        item.querySelector('.a-icon-star-small')
+          ?.textContent
+    )
+    .filter((item) => item !== undefined);
+
+  const numericRatings = ratingElements.map(
+    (rating) => {
+      const match = rating.match(
+        /^(\d+\.\d+) out of 5 stars$/
+      );
+      return match ? match[1] : null;
+    }
+  );
+
+  return numericRatings.filter(
+    (rating) => rating !== null
+  );
+}
+
+function scrapeImageURL(response) {
+  const htmlContent = response.data;
+  const dom = new JSDOM(htmlContent);
+  const document = dom.window.document;
 }
 
 export {
