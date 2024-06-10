@@ -7,6 +7,21 @@ document.addEventListener(
       'submit',
       async (event) => {
         event.preventDefault();
+        document.querySelector(
+          '.all-titles'
+        ).textContent = '';
+
+        document.querySelector(
+          '.all-number-ratings'
+        ).textContent = '';
+
+        document.querySelector(
+          '.all-ratings'
+        ).textContent = '';
+
+        document.querySelector(
+          '.all-image-urls'
+        ).textContent = '';
 
         const searchInput =
           document.querySelector('.search');
@@ -26,33 +41,65 @@ document.addEventListener(
               );
             }
             const data = await response.json();
-            //ratings, titles
 
             const titleContent =
               document.querySelector(
-                '.Box-Title'
+                '.all-titles'
               );
-            //titleContent.innerHTML = '';
             data.titles.map((title) => {
               const titleParagraph =
-                document.createElement('p');
+                document.createElement('li');
               titleParagraph.textContent = title;
               titleContent.appendChild(
                 titleParagraph
               );
             });
 
+            const numberReviewsContent =
+              document.querySelector(
+                '.all-number-ratings'
+              );
+            data.numberReviews.map((number) => {
+              const numberRatingsParagraph =
+                document.createElement('li');
+              numberRatingsParagraph.textContent =
+                number;
+              numberReviewsContent.appendChild(
+                numberRatingsParagraph
+              );
+            });
+
             const ratingsContent =
               document.querySelector(
-                '.boxRatings'
+                '.all-ratings'
               );
-            ratingsContent.innerHTML = '';
             data.ratings.map((rating) => {
-              const p =
-                document.createElement('p');
-              p.ratingsContent = rating;
-              ratingsContent.appendChild(p);
+              const ratingsParagraph =
+                document.createElement('li');
+              ratingsParagraph.textContent =
+                rating;
+
+              ratingsContent.appendChild(
+                ratingsParagraph
+              );
             });
+
+            const imageURLsContent =
+              document.querySelector(
+                '.all-image-urls'
+              );
+            data.imageURLs.map((imageURL) => {
+              const imageURLsParagraph =
+                document.createElement('li');
+              imageURLsParagraph.textContent =
+                imageURL;
+              imageURLsContent.appendChild(
+                imageURLsParagraph
+              );
+            });
+            document.querySelector(
+              '.box-footer'
+            ).textContent = `Results from the first page of Amazon for: ${searchQuery}`;
           } catch (error) {
             console.error(error);
           }
